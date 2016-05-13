@@ -1,0 +1,35 @@
+<ion-view view-title="MD5 Warner">
+ <ion-content class="padding">
+ <h2>Insecure MD5-Hashes</h2>
+
+    <label class="item">
+        <span class="input-label">A a short numeric password:</span>
+        <input  ng-model="pass"
+                placeholder="9999" 
+                size="10"></input> (maybe 4 digit)      
+    </label> 
+    <button class="button button-block button-calm" ng-click="createMD5Hash(pass)">Create MD5-Hash</button>
+
+    <label class="item">
+        <span class="input-label">MD5-Hash we want to crack:</span>
+        <input  ng-model="hash" placeholder="Click 'Create MD5-Hash'-Button..."
+                size="30"></input>
+    </label>
+
+
+    <div class="item item-input-inset">
+        <button class="button button-block  button-assertive" ng-click="findPasswordForThisMD5Hash(hash,pass)" ng-disabled="!hash">Brute-force (js)</button>
+        &nbsp;
+        <button class="button button-block  button-assertive" ng-click="nativeFindPasswordForThisMD5Hash(hash,pass)" ng-disabled="!(hash)">Brute-force (native)</button>
+    </div>
+
+    <span class="input-label">Log/Results:</span>
+    <ion-scroll>
+        <ion-list ng-controller="DashCtrl">
+            <ion-item ng-repeat="log in logItems" >
+                <h2>{{log.title}}</h2><p>{{log.description}}</p>
+            </ion-item>
+        </ion-list>
+    <ion-scroll>
+ </ion-content>
+</ion-view>
